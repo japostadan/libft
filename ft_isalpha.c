@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 15:39:49 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/11 20:46:22 by jpostada         ###   ########.fr       */
+/*   Created: 2024/01/11 16:31:19 by jpostada          #+#    #+#             */
+/*   Updated: 2024/01/11 20:49:35 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _MYCODE_H_
-#define _MYCODE_H_
-char	*reverse(char *s);
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-#endif
+#include "libft.h"
+#include <stdio.h>
+int	ft_isalpha(int c)
+{
+	if (( c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
+	else
+		return (0);
+}
