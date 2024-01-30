@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 16:31:19 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/21 11:52:35 by jpostada         ###   ########.fr       */
+/*   Created: 2024/01/16 21:22:47 by jpostada          #+#    #+#             */
+/*   Updated: 2024/01/24 11:44:15 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int	ft_isalpha(int c)
+/*
+ * locate a char in a given string
+ * then return a pointer to it
+ * if found
+ *
+ */
+char	*ft_strchr(const char *s, int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	else
-		return (0);
+	while (*s != '\0' && c != *s)
+		s++;
+	if (*s == c)
+		return ((char *)s);
+	return (0);
 }

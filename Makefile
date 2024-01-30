@@ -1,22 +1,40 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/30 21:18:32 by jpostada          #+#    #+#              #
+#    Updated: 2024/01/30 21:48:57 by jpostada         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-all: testfile
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+NAME = libft.a
+SRC =ft_putnbr_fd.c ft_putendl_fd.c ft_putstr_fd.c ft_putchar_fd.c ft_striteri.c ft_strmapi.c ft_itoa.c ft_split.c ft_strtrim.c ft_strjoin.c ft_substr.c ft_strdup.c ft_calloc.c ft_atoi.c ft_strnstr.c ft_memcmp.c ft_memchr.c ft_strncmp.c ft_strrchr.c ft_strchr.c ft_tolower.c ft_toupper.c ft_strlcat.c ft_strlcpy.c ft_memcpy.c ft_bzero.c ft_memset.c ft_strlen.c ft_isascii.c ft_isprint.c ft_isalnum.c ft_isdigit.c ft_isalpha.c
+FILES = $(SRC:.c=.o)
 
-ft_isalpha.o: ft_isalpha.c libft.h
-	$(CC) $(CFLAGS) -c ft_isalpha.c
+all: $(NAME)
 
-ft_idigit.o: ft_isdigit.c libft.h
-	$(CC) $(CFLAGS) -c ft_isdigit.c
+$(NAME): $(FILES)
+	@ar rc $(NAME) $(FILES)
+	@echo "$(NAME) created"
+	@ranlib $(NAME)
+	@echo "$(NAME) indexed"
 
-reverse.o: reverse.c libft.h
-	$(CC) $(CFLAGS) -c reverse.c
-
-libft.a:reverse.o ft_isalpha.o ft_isdigit.o
-	ar rcs reverse.o ft_isalpha.o ft_isdigit.o
-
-testfile: testfile.c reverse.o ft_isalpha.c ft_isdigit.c
-	$(CC) $(CFLAGS) -o $@ $^
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -rf *.o *.swp  testfile
+	@echo "Removing object files"
+	@rm -rf $(FILES)
+
+fclean: clean
+	@echo "Removing $(NAME)"
+	@rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
