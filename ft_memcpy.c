@@ -6,13 +6,13 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:16:36 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/23 13:40:07 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:57:06 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char		*a;
 	const char	*b;

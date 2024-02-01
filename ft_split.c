@@ -6,13 +6,11 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:24:43 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/30 18:42:09 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:58:41 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static int	count_words(const char *s, char c)
 {
