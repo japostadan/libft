@@ -6,17 +6,11 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:02:29 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/30 21:46:49 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:09:14 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
- * allocate sufficient memory for 
- * the copy of the string s1
- * and returns the pointer to it
- */
 
 char	*ft_strdup(const char *s1)
 {

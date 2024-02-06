@@ -6,7 +6,7 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 12:02:16 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/24 12:26:51 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:17:48 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	new_size;
-	void	*output;
+	size_t			i;
+	unsigned char	*output;
 
-	new_size = count * size;
-	output = malloc(new_size);
+	i = 0;
+	output = malloc(count * size);
 	if (!output)
-		return (0);
-	ft_memset(output, 0, new_size);
+		return (NULL);
+	while (i < count * size)
+		output[i++] = 0;
 	return (output);
 }

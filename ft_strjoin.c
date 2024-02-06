@@ -6,22 +6,12 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:44:21 by jpostada          #+#    #+#             */
-/*   Updated: 2024/02/01 12:00:06 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:08:47 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-/*
- *function that join 2 string into new 
- *check first there are strings passed
- *then allocate memory to the new string (len of s1 + s2 +1)
- *then iterate through the s1 while copying the value to new till s1 end
- *then iterate through s2 and copy to the array where s1 ends
- *then add the terminating character
- *finally return the new string
- *
- */
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	unsigned int	i;

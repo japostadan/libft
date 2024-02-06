@@ -6,22 +6,26 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:22:47 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/24 11:44:15 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:30:14 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
- * locate a char in a given string
- * then return a pointer to it
- * if found
- *
- */
+
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != '\0' && c != *s)
-		s++;
-	if (*s == c)
-		return ((char *)s);
+	size_t	i;
+	char	chr;
+
+	chr = (char) c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == chr)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == chr)
+		return ((char *)&s[i]);
 	return (0);
 }

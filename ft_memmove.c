@@ -6,7 +6,7 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 09:36:36 by jpostada          #+#    #+#             */
-/*   Updated: 2024/02/01 10:49:46 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:42:04 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if ((size_t)dst - (size_t)src < len)
 	{
 		i = len - 1;
-		while (i && i < len)
+		while (i >= 0 && i < len)
 		{
-			((unsigned char *)dst)[i] = ((unsigned char *)src[i]);
+			((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 			i--;
 		}
 	}

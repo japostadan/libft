@@ -6,13 +6,13 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 10:39:27 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/13 10:42:08 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:46:00 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 127)
+	if (c >= 32 && c <= 126)
 		return (1);
 	return (0);
 }
