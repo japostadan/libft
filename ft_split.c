@@ -6,7 +6,7 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:24:43 by jpostada          #+#    #+#             */
-/*   Updated: 2024/02/06 18:47:47 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:40:07 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	**ft_split(const char *s, char c)
 {
 	char		**res;
 	size_t		i;
-	int		j;
-	int		s_word;
+	int			j;
+	int			s_word;
 
 	ft_initiate_vars(&i, &j, &s_word);
 	res = ft_calloc((word_count(s, c) + 1), sizeof(char *));
@@ -69,7 +69,7 @@ static void	*ft_free(char **strs, int count)
 static char	*fill_word(const char *str, int start, int end)
 {
 	char	*word;
-	int	i;
+	int		i;
 
 	i = 0;
 	word = malloc((end - start + 1) * sizeof(char));

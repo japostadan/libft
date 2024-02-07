@@ -6,7 +6,7 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:56:20 by jpostada          #+#    #+#             */
-/*   Updated: 2024/01/28 12:32:49 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:39:05 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static char	*str_new(size_t n)
 char	*ft_itoa(int n)
 {
 	unsigned int	nbr;
-	int		sign;
-	int		len;
-	char		*str;
+	int				sign;
+	int				len;
+	char			*str;
 
 	sign = 0;
 	if (n < 0)
