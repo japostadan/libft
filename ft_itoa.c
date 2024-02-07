@@ -12,59 +12,65 @@
 
 #include "libft.h"
 
-static int	ft_getintlen(int value)
+static int	nbr_len(int nbr)
 {
-	int	l;
-	int	neg;
+	int	len;
 
-	l = 1;
-	neg = 1;
-	if (value < 0)
+	len = 0;
+	if (nbr < 1)
+		len++;
+	while (nbr)
 	{
-		value *= -1;
-		neg = -1;
+		nbr /= 10;
+		len++;
 	}
-	while (value > 9)
-	{
-		l++;
-		value /= 10;
-	}
-	if (neg == -1)
-		return (l + 1);
-	return (l);
+	return (len);
 }
 
-static int	ft_isneg(int n)
+static long long	abs_val(long long n)
 {
+	long long	nb;
+
+	nb = 1;
 	if (n < 0)
-		return (-1);
-	return (1);
+		nb *= -n;
+	else
+		nb *= n;
+	return (nb);
+}
+
+static char	*str_new(size_t n)
+{
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * (n + 1));
+	if (!str)
+		return (NULL);
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t	len;
-	char	*instr;
-	int		neg;
+	unsigned int	nbr;
+	int		sign;
+	int		len;
+	char		*str;
 
-	neg = ft_isneg(n);
-	len = ft_getintlen(n);
-	instr = (char *)malloc(sizeof(char *) * len +1);
-	if (n == -2147483648)
-		return ("-2147483648");
-	if (!instr)
-		return (0);
-	if (neg == -1)
-		n *= -1;
-	instr[len--] = 0;
-	if (n == 0)
-		instr[len--] = '0';
-	while (n)
+	sign = 0;
+	if (n < 0)
+		sign = 1;
+	len = nbr_len(n);
+	str = str_new(len);
+	if (!str)
+		return (NULL);
+	*(str + len) = '\0';
+	nbr = abs_val(n);
+	while (len--)
 	{
-		instr[len--] = ((n % 10) + '0');
-		n /= 10;
+		*(str + len) = 48 + nbr % 10;
+		nbr /= 10;
 	}
-	if (neg == -1)
-		instr[len] = '-';
-	return (instr);
+	if (sign)
+		*(str) = 45;
+	return (str);
 }

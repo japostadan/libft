@@ -12,101 +12,96 @@
 
 #include "libft.h"
 
-static int	count_words(const char *s, char c)
+static int	word_count(const char *str, char c);
+static char	*fill_word(const char *str, int start, int end);
+static void	*ft_free(char **strs, int count);
+static void	ft_initiate_vars(size_t *i, int *j, int *s_word);
+
+char	**ft_split(const char *s, char c)
+{
+	char		**res;
+	size_t		i;
+	int		j;
+	int		s_word;
+
+	ft_initiate_vars(&i, &j, &s_word);
+	res = ft_calloc((word_count(s, c) + 1), sizeof(char *));
+	if (!res)
+		return (NULL);
+	while (i <= ft_strlen(s))
+	{
+		if (s[i] != c && s_word < 0)
+			s_word = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && s_word >= 0)
+		{
+			res[j] = fill_word(s, s_word, i);
+			if (!(res[j]))
+				return (ft_free(res, j));
+			s_word = -1;
+			j++;
+		}
+		i++;
+	}
+	return (res);
+}
+
+static void	ft_initiate_vars(size_t *i, int *j, int *s_word)
+{
+	*i = 0;
+	*j = 0;
+	*s_word = -1;
+}
+
+static void	*ft_free(char **strs, int count)
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
+	return (NULL);
+}
+
+static char	*fill_word(const char *str, int start, int end)
+{
+	char	*word;
+	int	i;
+
+	i = 0;
+	word = malloc((end - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	while (start < end)
+	{
+		word[i] = str[start];
+		i++;
+		start++;
+	}
+	word[i] = 0;
+	return (word);
+}
+
+static	int	word_count(const char *str, char c)
 {
 	int	count;
-	int	in_word;
+	int	x;
 
 	count = 0;
-	in_word = 0;
-	while (*s)
+	x = 0;
+	while (*str)
 	{
-		if (*s == c)
-			in_word = 0;
-		else if (!in_word)
+		if (*str != c && x == 0)
 		{
-			in_word = 1;
+			x = 1;
 			count++;
 		}
-		s++;
+		else if (*str == c)
+			x = 0;
+		str++;
 	}
 	return (count);
 }
-
-static char	*ft_strncpy(char *dst, const char *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (!src && !n)
-		return (0);
-	while (src[i] != '\0' && i < n)
-	{
-		dst[i] = src [i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-static char	*duplicate_word(const char *s, size_t n)
-{
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * n + 1);
-	if (!str)
-		return (NULL);
-	str = ft_strncpy(str, s, n);
-	str[n] = '\0';
-	return (str);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	k;
-	char			**word;
-
-	i = 0;
-	k = 0;
-	word = (char **)malloc(sizeof(char) * (count_words(s, c) + 1));
-	if (word == NULL)
-		return (NULL);
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		j = i;
-		while (s[i] && s[i] != c)
-			i++;
-		if (i > j)
-		{
-			word[i] = duplicate_word(s + j, i - j);
-			k++;
-		}
-	}
-	word[k] = NULL;
-	return (word);
-}
-/*
-int main() {
-    const char *input_string = "Hello,,Is,A,Test";
-    char delimiter = ',';
-
-    // Test the ft_split function
-    char **result = ft_split(input_string, delimiter);
-
-    // Check if the result is not NULL
-    if (result != NULL) {
-        // Print each word in the split result
-        for (int i = 0; result[i] != NULL; i++) {
-            printf("Word %d: %s\n", i + 1, result[i]);
-        }
-    }
-    else
-        printf("Input string is NULL. Cannot split.\n");
-    
-    return 0;
-}
-*/
