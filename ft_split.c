@@ -6,11 +6,12 @@
 /*   By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 09:24:43 by jpostada          #+#    #+#             */
-/*   Updated: 2024/02/07 14:40:07 by jpostada         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:09:59 by jpostada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	word_count(const char *str, char c);
 static char	*fill_word(const char *str, int start, int end);
@@ -26,7 +27,7 @@ char	**ft_split(const char *s, char c)
 
 	ft_initiate_vars(&i, &j, &s_word);
 	res = ft_calloc((word_count(s, c) + 1), sizeof(char *));
-	if (!res)
+	if (!res || !s)
 		return (NULL);
 	while (i <= ft_strlen(s))
 	{
@@ -104,4 +105,19 @@ static	int	word_count(const char *str, char c)
 		str++;
 	}
 	return (count);
+}
+
+int main(int argc, char **argv)
+{
+	char **splitted;
+
+	splitted = ft_split(argv[1], ' ');
+	int i = 0;
+
+	while (splitted[i])
+	{
+		printf("[%s]",splitted[i]);
+		i++;
+	}
+	return (0);
 }

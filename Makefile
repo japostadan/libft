@@ -6,7 +6,7 @@
 #    By: jpostada <jpostada@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 21:18:32 by jpostada          #+#    #+#              #
-#    Updated: 2024/02/01 10:55:11 by jpostada         ###   ########.fr        #
+#    Updated: 2024/02/08 17:44:38 by jpostada         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,8 @@ all: $(NAME)
 $(NAME): $(FILES)
 	@ar rc $(NAME) $(FILES)
 	@echo "$(NAME) created"
-	@ranlib $(NAME)
-	@echo "$(NAME) indexed"
 
-%.o: %.c
+%.o: %.c Makefile
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
