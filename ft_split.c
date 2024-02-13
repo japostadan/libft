@@ -13,100 +13,66 @@
 #include "libft.h"
 #include <stdio.h>
 
-static int	word_count(const char *str, char c);
-static char	*fill_word(const char *str, int start, int end);
-static void	*ft_free(char **strs, int count);
-static void	ft_initiate_vars(size_t *i, int *j, int *s_word);
+#include "libft.h"
 
-char	**ft_split(const char *s, char c)
+static size_t ft_wordlen(char const *s, char c)
 {
-	char		**res;
-	size_t		i;
-	int			j;
-	int			s_word;
-
-	ft_initiate_vars(&i, &j, &s_word);
-	res = ft_calloc((word_count(s, c) + 1), sizeof(char *));
-	if (!res || !s)
-		return (NULL);
-	while (i <= ft_strlen(s))
-	{
-		if (s[i] != c && s_word < 0)
-			s_word = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && s_word >= 0)
-		{
-			res[j] = fill_word(s, s_word, i);
-			if (!(res[j]))
-				return (ft_free(res, j));
-			s_word = -1;
-			j++;
-		}
-		i++;
-	}
-	return (res);
-}
-
-static void	ft_initiate_vars(size_t *i, int *j, int *s_word)
-{
-	*i = 0;
-	*j = 0;
-	*s_word = -1;
-}
-
-static void	*ft_free(char **strs, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		free(strs[i]);
-		i++;
-	}
-	free(strs);
-	return (NULL);
-}
-
-static char	*fill_word(const char *str, int start, int end)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	word = malloc((end - start + 1) * sizeof(char));
-	if (!word)
-		return (NULL);
-	while (start < end)
-	{
-		word[i] = str[start];
-		i++;
-		start++;
-	}
-	word[i] = 0;
-	return (word);
-}
-
-static	int	word_count(const char *str, char c)
-{
-	int	count;
-	int	x;
+	size_t count;
 
 	count = 0;
-	x = 0;
-	while (*str)
+	while (*s)
 	{
-		if (*str != c && x == 0)
+		if (*s != c)
 		{
-			x = 1;
-			count++;
+			++count;
+			while (*s && *s != c)
+				++s;
 		}
-		else if (*str == c)
-			x = 0;
-		str++;
+		else
+			++s;
 	}
 	return (count);
 }
 
+static char **ft_free_dptr(char **s, int i)
+{
+	while (--i >= 0 && s[i])
+	{
+		free(s[i]);
+		s[i] = NULL;
+	}
+	free(s);
+	s = NULL;
+	return (NULL);
+}
+
+char **ft_split(char const *s, char c)
+{
+	int i;
+	char *from;
+	char **buffer;
+
+	i = 0;
+	buffer = (char **)malloc((ft_wordlen(s, c) + 1) * sizeof(char *));
+	if (!s || !buffer)
+		return (NULL);
+	while (*s)
+	{
+		if (*s != c)
+		{
+			from = (char *)s;
+			while (*s && *s != c)
+				++s;
+			buffer[i++] = ft_substr(from, 0, (s - from));
+			if (!buffer)
+				return (ft_free_dptr(buffer, i));
+		}
+		else
+			++s;
+	}
+	buffer[i] = NULL;
+	return (buffer);
+}
 int main(int argc, char **argv)
 {
 	char **splitted;
@@ -116,7 +82,7 @@ int main(int argc, char **argv)
 
 	while (splitted[i])
 	{
-		printf("[%s]",splitted[i]);
+		printf("[%s]", splitted[i]);
 		i++;
 	}
 	return (0);
