@@ -1,14 +1,15 @@
 # Libft - @42Born2Code
 
-### TOC
+### CONTENTS
 
 - [What is libft?](#what-is-libft)
 - [What's in it?](#whats-in-it)
 - [List of functions](#list-of-functions) Click to each function to see an explication
+- [List of bonus functions](#bonus-functions)
 
 ### What is libft?
 
-Libft is an individual project at [42][1] that requieres us to re-create some standard C library functions for future projects, and have a deeper understanding of data structures and basic algorithms. At 42 we are not allowed to use some standard libraries on our projects, so we have to keep growing this libary with our own functions as we go farther in the program.
+Libft is an individual project at [42] that requieres us to re-create some standard C library functions for future projects, and have a deeper understanding of data structures and basic algorithms. At 42 we are not allowed to use some standard libraries on our projects, so we have to keep growing this libary with our own functions as we go farther in the program.
 
 ### What's in it?
 
@@ -18,6 +19,7 @@ There are 4 sections:
 2.  **Additional functions:** Functions that will be useful for later projects
 3.  **Bonus Functions:** Functions that will be useful for linked list manipulation
 4.  **Personal Functions:** Functions I believe will be useful later.
+5.	**Create your own test for the functions**
 
 ### List of functions
 
@@ -282,3 +284,13 @@ There are 4 sections:
 |                                                           Description                                                           |       Param. #1        |                            Return Value                            |
 | :-----------------------------------------------------------------------------------------------------------------------------: | :--------------------: | :----------------------------------------------------------------: |
 | Allocates (with malloc) and returns a string representing the integer received as an argument. Negative numbers must be handled | The integer to convert | The string representing the integer. NULL if the allocation fails. |
+
+### Bonus Funcitons
+
+## [ft_lstnew](ft_lstnew.c)
+
+`t_list *ft_lstnew(void *content)`
+|                                                           Description                                                           |       Param. #1        |                            Return Value                            |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :--------------------: | :----------------------------------------------------------------: |
+| Allocates (with malloc(3)) and returns a new node.The member variable ’content’ is initialized with the value of the parameter ’content’. The variable ’next’ is initialized to NULL. | content: The content to create the node with | The new node |
+
